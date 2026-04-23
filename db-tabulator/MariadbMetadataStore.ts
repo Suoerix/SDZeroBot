@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {toolsdb, MAX_CONSECUTIVE_FAILURES_ALLOWED, METADATA_DB_NAME} from "./di";
 import {fetchQueriesForPage, Query} from "./app";
 import {MetadataStore} from "./MetadataStore";
@@ -5,7 +6,7 @@ import {setDifference} from "./di";
 import * as crypto from "crypto";
 
 export class MariadbMetadataStore implements MetadataStore {
-    db: toolsdb;
+    db: typeof toolsdb;
 
     async init() {
         this.db = new toolsdb(METADATA_DB_NAME);

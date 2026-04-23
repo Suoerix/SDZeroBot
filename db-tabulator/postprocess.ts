@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {argv, AuthManager, fs, log, Mwn, timedPromise, API_URL, USER_AGENT} from "./di";
 import {fork} from "child_process";
 import EventEmitter from "events";

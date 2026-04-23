@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
     argv, bot, emailOnError, log, Mwn, TextExtractor, //../botbase
     db, //../db

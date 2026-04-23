@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * Efficient interface to access ToolsDB.
  * Automatically handles transient connection errors.

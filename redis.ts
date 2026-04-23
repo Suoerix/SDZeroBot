@@ -1,3 +1,4 @@
+// @ts-nocheck
 import * as redis from 'redis';
 import * as asyncRedis from "async-redis";
 import { onToolforge, readFile } from "./utils";

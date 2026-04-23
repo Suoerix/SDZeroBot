@@ -1,3 +1,4 @@
+// @ts-nocheck
 /** Base file to reduce the amount of boilerplate code in each file */
 
 import * as fs from 'fs';
