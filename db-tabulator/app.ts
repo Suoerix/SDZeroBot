@@ -741,7 +741,7 @@ export class Query extends EventEmitter {
 				await subpage.save(
 					`{{Database report/subpage|page=${pageNumber}|num_pages=${this.numPages}}}\n` +
 					resultText,
-					'Updating database report'
+					'更新数据库报告'
 				);
 				this.emit('save-success', subpage.getPrefixedText());
 			}
@@ -754,7 +754,7 @@ export class Query extends EventEmitter {
 				await subpage.save(
 					`{{Database report/subpage|page=${i}|num_pages=${this.numPages}}}\n` +
 					`{{Database report/footer|count=0|page=${i}|num_pages=${this.numPages}}}`,
-					'Updating database report subpage - empty'
+					'更新数据库报告子页面 - 空'
 				);
 			}
 		}
@@ -762,12 +762,12 @@ export class Query extends EventEmitter {
 
 	generateEditSummary(isError: boolean) {
 		const updateMode =
-			this.context === 'web' ? 'web triggered' :
-				this.context === 'cron' ? 'periodic update' :
-					'manual';
+			this.context === 'web' ? '网页触发' :
+				this.context === 'cron' ? '定期更新' :
+					'手动';
 		const endNotFoundNote = this.endNotFound ?
 			', overwriting rest of page as end template not found' : '';
-		return (isError ? 'Encountered error in updating database report' : 'Updating database report')
+		return (isError ? '更新数据库报告出错' : '更新数据库报告')
 			+ ': ' + updateMode + endNotFoundNote;
 	}
 
