@@ -1,8 +1,13 @@
 // @ts-nocheck
 import * as redis from 'redis';
 import * as asyncRedis from "async-redis";
-import { onToolforge, readFile } from "./utils";
-import { log } from "./botbase";
+import { onToolforge, readFile } from "./utils.js";
+import { log } from "./botbase.js";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 /**
  * @deprecated

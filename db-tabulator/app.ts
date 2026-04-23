@@ -11,12 +11,17 @@ import {
     FAKE_INPUT_FILE, FAKE_OUTPUT_FILE
 } from './di.js';
 import type { SQLError } from "../db.js";
-import {Template} from "../../mwn/build/wikitext";
+import {Template} from "mwn/build/wikitext.js";
 import type {ApiExpandTemplatesParams} from "types-mediawiki-api";
-import {MetadataStore} from "./MetadataStore";
-import {HybridMetadataStore} from "./HybridMetadataStore";
-import {applyJsPostProcessing, processQueriesExternally} from "./postprocess";
+import {MetadataStore} from "./MetadataStore.js";
+import {HybridMetadataStore} from "./HybridMetadataStore.js";
+import {applyJsPostProcessing, processQueriesExternally} from "./postprocess.js";
 import {EventEmitter} from "events";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 
 export const metadataStore: MetadataStore = new HybridMetadataStore();

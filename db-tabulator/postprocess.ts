@@ -3,8 +3,13 @@ import {argv, AuthManager, fs, log, Mwn, timedPromise, API_URL, USER_AGENT} from
 import {fork} from "child_process";
 import EventEmitter from "events";
 import type {Query} from "./app.js";
-import {RawRequestParams} from "../../mwn/build/core";
+import {RawRequestParams} from "mwn/build/core.js";
 import {RawAxiosRequestHeaders} from "axios";
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const softTimeout = 1500;
 const hardTimeout = 2000;

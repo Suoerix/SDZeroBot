@@ -7,7 +7,7 @@
 import {AuthManager, bot, log} from './botbase.js';
 import * as mysql from 'mysql2/promise';
 export {mysql};
-import type {MwnDate} from "../mwn/index.js";
+import type {MwnDate} from "mwn/index.js";
 import {onToolforge} from "./utils.js";
 
 export const ENWIKI_DB_HOST = 'enwiki.analytics.db.svc.wikimedia.cloud';
