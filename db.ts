@@ -4,11 +4,11 @@
  * Automatically handles transient connection errors.
  */
 
-import {AuthManager, bot, log} from './botbase';
+import {AuthManager, bot, log} from './botbase.js';
 import * as mysql from 'mysql2/promise';
 export {mysql};
-import type {MwnDate} from "../mwn";
-import {onToolforge} from "./utils";
+import type {MwnDate} from "../mwn/index.js";
+import {onToolforge} from "./utils.js";
 
 export const ENWIKI_DB_HOST = 'enwiki.analytics.db.svc.wikimedia.cloud';
 export const ENWIKI_WEB_DB_HOST = 'enwiki.web.db.svc.wikimedia.cloud';

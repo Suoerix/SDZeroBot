@@ -1,8 +1,8 @@
 // @ts-nocheck
-import {argv, AuthManager, fs, log, Mwn, timedPromise, API_URL, USER_AGENT} from "./di";
+import {argv, AuthManager, fs, log, Mwn, timedPromise, API_URL, USER_AGENT} from "./di.js";
 import {fork} from "child_process";
 import EventEmitter from "events";
-import type {Query} from "./app";
+import type {Query} from "./app.js";
 import {RawRequestParams} from "../../mwn/build/core";
 import {RawAxiosRequestHeaders} from "axios";
 

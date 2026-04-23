@@ -1,8 +1,8 @@
-import {MetadataStore} from "./MetadataStore";
-import {Query} from "./app";
-import {MariadbMetadataStore} from "./MariadbMetadataStore";
-import {NoMetadataStore} from "./NoMetadataStore";
-import {log} from "./di";
+import {MetadataStore} from "./MetadataStore.js";
+import {Query} from "./app.js";
+import {MariadbMetadataStore} from "./MariadbMetadataStore.js";
+import {NoMetadataStore} from "./NoMetadataStore.js";
+import {log} from "./di.js";
 
 export class HybridMetadataStore implements MetadataStore {
 

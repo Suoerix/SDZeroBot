@@ -1,6 +1,6 @@
-import {BOT_NAME, SUBSCRIPTIONS_CATEGORY, TEMPLATE, bot, db as zhwikidb, log, Mwn} from "./di";
-import {Query, getQueriesFromText} from "./app";
-import {MetadataStore} from "./MetadataStore";
+import {BOT_NAME, SUBSCRIPTIONS_CATEGORY, TEMPLATE, bot, db as zhwikidb, log, Mwn} from "./di.js";
+import {Query, getQueriesFromText} from "./app.js";
+import {MetadataStore} from "./MetadataStore.js";
 type MwnDate = InstanceType<typeof Mwn.Date>;
 
 export class NoMetadataStore implements MetadataStore {

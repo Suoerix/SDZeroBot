@@ -1,8 +1,8 @@
 // @ts-nocheck
-import {toolsdb, MAX_CONSECUTIVE_FAILURES_ALLOWED, METADATA_DB_NAME} from "./di";
-import {fetchQueriesForPage, Query} from "./app";
-import {MetadataStore} from "./MetadataStore";
-import {setDifference} from "./di";
+import {toolsdb, MAX_CONSECUTIVE_FAILURES_ALLOWED, METADATA_DB_NAME} from "./di.js";
+import {fetchQueriesForPage, Query} from "./app.js";
+import {MetadataStore} from "./MetadataStore.js";
+import {setDifference} from "./di.js";
 import * as crypto from "crypto";
 
 export class MariadbMetadataStore implements MetadataStore {

@@ -9,8 +9,8 @@ import {
     BOT_NAME, TEMPLATE, TEMPLATE_END, SUBSCRIPTIONS_CATEGORY, FAILURES_CATEGORY,
     QUERY_TIMEOUT, CONCURRENCY, MAX_SUBPAGES, MAX_CONSECUTIVE_FAILURES_ALLOWED, SHUTOFF_PAGE,
     FAKE_INPUT_FILE, FAKE_OUTPUT_FILE
-} from './di';
-import type { SQLError } from "../db";
+} from './di.js';
+import type { SQLError } from "../db.js";
 import {Template} from "../../mwn/build/wikitext";
 import type {ApiExpandTemplatesParams} from "types-mediawiki-api";
 import {MetadataStore} from "./MetadataStore";
