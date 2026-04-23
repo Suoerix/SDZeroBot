@@ -1,31 +1,22 @@
-import {argv, bot, emailOnError, log, Mwn, TextExtractor} from "../botbase";
-import {enwikidb, SQLError} from "../db";
+import {
+    argv, bot, emailOnError, log, Mwn, TextExtractor, //../botbase
+    db, //../db
+    arrayChunk, createLogStream, lowerFirst, readFile, stripOuterNowikis, writeFile, //../utils
+    NS_CATEGORY, NS_FILE, NS_MAIN, NS_MODULE, //../namespaces
+    formatSummary, //../reports/commons
+
+    BOT_NAME, TEMPLATE, TEMPLATE_END, SUBSCRIPTIONS_CATEGORY, FAILURES_CATEGORY,
+    QUERY_TIMEOUT, CONCURRENCY, MAX_SUBPAGES, MAX_CONSECUTIVE_FAILURES_ALLOWED, SHUTOFF_PAGE,
+    FAKE_INPUT_FILE, FAKE_OUTPUT_FILE
+} from './di';
+import type { SQLError } from "../db";
 import {Template} from "../../mwn/build/wikitext";
-import {arrayChunk, createLogStream, lowerFirst, readFile, stripOuterNowikis, writeFile} from "../utils";
-import {NS_CATEGORY, NS_FILE, NS_MAIN, NS_MODULE} from "../namespaces";
 import type {ApiExpandTemplatesParams} from "types-mediawiki-api";
-import {formatSummary} from "../reports/commons";
 import {MetadataStore} from "./MetadataStore";
 import {HybridMetadataStore} from "./HybridMetadataStore";
 import {applyJsPostProcessing, processQueriesExternally} from "./postprocess";
 import {EventEmitter} from "events";
 
-export const BOT_NAME = 'SDZeroBot';
-export const TEMPLATE = 'Database report';
-export const TEMPLATE_END = 'Database report end';
-export const SUBSCRIPTIONS_CATEGORY = 'SDZeroBot database report subscriptions';
-export const FAILURES_CATEGORY = 'SDZeroBot database report failures';
-export const QUERY_TIMEOUT = 600;
-export const CONCURRENCY = 5;
-export const MAX_SUBPAGES = 20;
-export const MAX_CONSECUTIVE_FAILURES_ALLOWED = 3;
-export const SHUTOFF_PAGE = 'User:SDZeroBot/Shutoff/Database reports';
-export const FAKE_INPUT_FILE = 'fake-configs.wikitext';
-export const FAKE_OUTPUT_FILE = 'fake-output.wikitext';
-
-const db = new enwikidb({
-	connectionLimit: CONCURRENCY
-});
 
 export const metadataStore: MetadataStore = new HybridMetadataStore();
 

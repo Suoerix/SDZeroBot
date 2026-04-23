@@ -1,20 +1,19 @@
-import {argv, AuthManager, fs, log, Mwn} from "../botbase";
+import {argv, AuthManager, fs, log, Mwn, timedPromise, API_URL, USER_AGENT} from "./di";
 import {fork} from "child_process";
 import EventEmitter from "events";
 import type {Query} from "./app";
 import {RawRequestParams} from "../../mwn/build/core";
 import {RawAxiosRequestHeaders} from "axios";
-import {timedPromise} from "../utils";
 
 const softTimeout = 1500;
 const hardTimeout = 2000;
 const processTimeout = 30000;
 
 const apiClient = new Mwn({
-    apiUrl: 'https://en.wikipedia.org/w/api.php',
+    apiUrl: API_URL,
     maxRetries: 0,
     silent: true,
-    userAgent: '[[w:en:Template:Database report]] via [[w:en:SDZeroBot]], node.js isolated-vm',
+    userAgent: USER_AGENT,
     OAuth2AccessToken: AuthManager.get('sdzerobot-dbreports').OAuth2AccessToken,
     defaultParams: {
         maxlag: undefined
@@ -192,7 +191,10 @@ class SandboxedRequest {
     headers: RawAxiosRequestHeaders = {
         // Bot grant enables apihighlimit (for Action API), and helps avoid throttling for some REST APIs.
         // It has no write access.
-        'Authorization': `Bearer ${AuthManager.get('sdzerobot-dbreports').OAuth2AccessToken}`
+        // NOTE: PexBot might not have a valid OAuth2AccessToken here if using BotPassword.
+        'Authorization': AuthManager.get('sdzerobot-dbreports').OAuth2AccessToken 
+            ? `Bearer ${AuthManager.get('sdzerobot-dbreports').OAuth2AccessToken}` 
+            : undefined
     }
     getConfig(url: string): RawRequestParams {
         return {
@@ -212,10 +214,10 @@ class SandboxedWikidataQueryServiceRequest extends SandboxedRequest {
 }
 
 const supportedDomains = [
-    { prefix: 'https://en.wikipedia.org/api/rest_v1/', req: new SandboxedRequest() },
+    { prefix: API_URL, req: new SandboxedRequest() },
+    { prefix: API_URL.replace('/w/api.php', '/api/rest_v1/'), req: new SandboxedRequest() },
+    { prefix: API_URL.replace('/w/api.php', '/w/rest.php/'), req: new SandboxedRequest() },
     { prefix: 'https://wikimedia.org/api/rest_v1/', req: new SandboxedRequest() },
-    { prefix: 'https://en.wikipedia.org/w/rest.php/', req: new SandboxedRequest() },
-    { prefix: 'https://en.wikipedia.org/w/api.php?', req: new SandboxedRequest() },
     { prefix: 'https://api.wikimedia.org/', req: new SandboxedRequest() },
     { prefix: 'https://query.wikidata.org/', req: new SandboxedWikidataQueryServiceRequest() },
 ];

@@ -2,7 +2,7 @@ import {MetadataStore} from "./MetadataStore";
 import {Query} from "./app";
 import {MariadbMetadataStore} from "./MariadbMetadataStore";
 import {NoMetadataStore} from "./NoMetadataStore";
-import {log} from "../botbase";
+import {log} from "./di";
 
 export class HybridMetadataStore implements MetadataStore {
 

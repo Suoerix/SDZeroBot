@@ -1,14 +1,14 @@
-import {toolsdb} from "../db";
-import {fetchQueriesForPage, Query, MAX_CONSECUTIVE_FAILURES_ALLOWED} from "./app";
+import {toolsdb, MAX_CONSECUTIVE_FAILURES_ALLOWED, METADATA_DB_NAME} from "./di";
+import {fetchQueriesForPage, Query} from "./app";
 import {MetadataStore} from "./MetadataStore";
-import {setDifference} from "../utils";
+import {setDifference} from "./di";
 import * as crypto from "crypto";
 
 export class MariadbMetadataStore implements MetadataStore {
     db: toolsdb;
 
     async init() {
-        this.db = new toolsdb('dbreports_p');
+        this.db = new toolsdb(METADATA_DB_NAME);
     }
 
     async updateMetadata(page: string, queries: Query[]) {

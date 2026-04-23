@@ -1,13 +1,13 @@
-import {BOT_NAME, Query, getQueriesFromText, SUBSCRIPTIONS_CATEGORY, TEMPLATE} from "./app";
-import {bot, enwikidb, log} from "../botbase";
-import {MwnDate} from "../../mwn";
+import {BOT_NAME, SUBSCRIPTIONS_CATEGORY, TEMPLATE, bot, db as zhwikidb, log, Mwn} from "./di";
+import {Query, getQueriesFromText} from "./app";
 import {MetadataStore} from "./MetadataStore";
+type MwnDate = InstanceType<typeof Mwn.Date>;
 
 export class NoMetadataStore implements MetadataStore {
-    wikidb: enwikidb;
+    wikidb: typeof zhwikidb;
 
     async init() {
-        this.wikidb = new enwikidb();
+        this.wikidb = zhwikidb;
     }
 
     async updateMetadata(page: string, queries: Query[]) {}
